@@ -101,7 +101,7 @@ int main()
     strcpy(my_person.name, "ABCDEFGHIJK");
 
     vector_search(&my_vector, &my_person);
-    // printf("NOME DO INDICE 0 CARAIO: ->>> %s\n", my_vector.data[10].name);
+    
     print_data(&my_vector);
     print_only_nodes(&my_vector);
 }
