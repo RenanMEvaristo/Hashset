@@ -21,5 +21,6 @@ typedef struct
 
 void vector_ini(vecpeople *vector);
 void person_ini(person *new_person);
+void vector_ini_resize(vecpeople *vector, int vec_cap);
 
 #endif

@@ -34,11 +34,27 @@ int main()
     my_person.age = 40;
     add_data(&my_vector, &my_person);
 
+    strcpy(my_person.name, "BA");
+    my_person.age = 40;
+    add_data(&my_vector, &my_person);
+
     strcpy(my_person.name, "ABC");
     my_person.age = 40;
     add_data(&my_vector, &my_person);
 
+    strcpy(my_person.name, "CBA");
+    my_person.age = 40;
+    add_data(&my_vector, &my_person);
+
+    strcpy(my_person.name, "BAC");
+    my_person.age = 40;
+    add_data(&my_vector, &my_person);
+
     strcpy(my_person.name, "ABCD");
+    my_person.age = 40;
+    add_data(&my_vector, &my_person);
+
+    strcpy(my_person.name, "DCBA");
     my_person.age = 40;
     add_data(&my_vector, &my_person);
 
@@ -66,9 +82,26 @@ int main()
     my_person.age = 40;
     add_data(&my_vector, &my_person);
 
+    strcpy(my_person.name, "ABCDEFGHIJK");
+    my_person.age = 40;
+    add_data(&my_vector, &my_person);
+
+    strcpy(my_person.name, "ABCDEFGHIJKL");
+    my_person.age = 40;
+    add_data(&my_vector, &my_person);
+
+    strcpy(my_person.name, "ABCDEFGHIJKLM");
+    my_person.age = 40;
+    add_data(&my_vector, &my_person);
+
+    strcpy(my_person.name, "ABCDEFGHIJKLMN");
+    my_person.age = 40;
+    add_data(&my_vector, &my_person);
     // para funçao search
-    strcpy(my_person.name, "Jenisvaldo");
+    strcpy(my_person.name, "ABCDEFGHIJK");
 
     vector_search(&my_vector, &my_person);
+    // printf("NOME DO INDICE 0 CARAIO: ->>> %s\n", my_vector.data[10].name);
     print_data(&my_vector);
+    print_only_nodes(&my_vector);
 }
