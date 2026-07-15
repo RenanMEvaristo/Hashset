@@ -2,11 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
+
+// #define DEBUG_METAL
 
 #include "util.h"
 #include "struct.h"
 #include "node.h"
 #include "vector.h"
+#include "stopwatch.h"
+
+#define ELEMENTS 100
 /*
 - entender como hashset funciona
 - implementar um hashset para uma struct com sei lá, 2 ou 3 fields
@@ -23,85 +29,41 @@ int main()
 
     person my_person;
 
+#ifdef DEBUG_METAL
+    printf("ESTOU LIGADO\n\n");
+#endif
+
+    srand((unsigned int)time(NULL));
+
     vector_ini(&my_vector);
     person_ini(&my_person);
 
-    strcpy(my_person.name, "A");
-    my_person.age = 20;
-    add_data(&my_vector, &my_person);
+    // for (int j = 0; j < ELEMENTS; j++)
+    // {
+    for (int i = 0; i < ELEMENTS; i++)
+    {
+        generate_random_data(&my_person);
+        add_data(&my_vector, &my_person);
+    }
 
-    strcpy(my_person.name, "AB");
-    my_person.age = 40;
+    Stopwatch sw = stopwatch_start();
+    generate_random_data(&my_person);
     add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "BA");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABC");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "CBA");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "BAC");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCD");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "DCBA");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDE");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDEF");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDEFG");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDEFGH");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDEFGHI");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDEFGHIJ");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDEFGHIJK");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDEFGHIJKL");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDEFGHIJKLM");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
-
-    strcpy(my_person.name, "ABCDEFGHIJKLMN");
-    my_person.age = 40;
-    add_data(&my_vector, &my_person);
+    stopwatch_stop(&sw);
+    float time = stopwatch_ms(&sw);
+    save_time_to_file("Insercao_1_item_Vector_100_Elements_NAIVE", time);
     // para funçao search
-    strcpy(my_person.name, "ABCDEFGHIJK");
+
+    Stopwatch sw2 = stopwatch_start();
+    strcpy(my_person.name, "DCBA");
 
     vector_search(&my_vector, &my_person);
-    
+    stopwatch_stop(&sw2);
+    float time2 = stopwatch_ms(&sw2);
+    save_time_to_file("Pesquisa_1_item_Vector_100_Elements_NAIVE", time2);
+
+    // }
     print_data(&my_vector);
     print_only_nodes(&my_vector);
+    printf("VECTOR SIZE -> %d\n\n", my_vector.size);
 }
