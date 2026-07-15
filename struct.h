@@ -4,7 +4,7 @@
 typedef struct node_person
 {
 
-    char name[20];
+    char name[31];
     int age;
     struct node_person *next;
 
