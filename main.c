@@ -46,24 +46,39 @@ int main()
         add_data(&my_vector, &my_person);
     }
 
-    Stopwatch sw = stopwatch_start();
-    generate_random_data(&my_person);
-    add_data(&my_vector, &my_person);
-    stopwatch_stop(&sw);
-    float time = stopwatch_ms(&sw);
-    save_time_to_file("Insercao_1_item_Vector_100_Elements_NAIVE", time);
-    // para funçao search
+    double media_insert = 0;
+    double media_search = 0;
 
-    Stopwatch sw2 = stopwatch_start();
-    strcpy(my_person.name, "DCBA");
+    for (int i = 0; i < ELEMENTS; i++)
+    {
+        generate_random_data(&my_person);
+        Stopwatch sw = stopwatch_start();
+        add_data(&my_vector, &my_person);
+        stopwatch_stop(&sw);
+        double time = stopwatch_ms(&sw);
+        media_insert += time;
 
-    vector_search(&my_vector, &my_person);
-    stopwatch_stop(&sw2);
-    float time2 = stopwatch_ms(&sw2);
-    save_time_to_file("Pesquisa_1_item_Vector_100_Elements_NAIVE", time2);
+        save_time_to_file("Insercao_1_item_Vector_100_Elements_NAIVE", time);
+        // para funçao search
+    }
+    for (int j = 0; j < ELEMENTS; j++)
+    {
+        Stopwatch sw2 = stopwatch_start();
+        strcpy(my_person.name, "DCBA");
+        vector_search(&my_vector, &my_person);
+        stopwatch_stop(&sw2);
+        double time2 = stopwatch_ms(&sw2);
+        media_search += time2;
+        save_time_to_file("Pesquisa_1_item_Vector_100_Elements_NAIVE", time2);
+    }
 
+    media_insert = media_insert / ELEMENTS;
+    media_search = media_search / ELEMENTS;
+
+    save_time_to_file("MEDIA INSERT", media_insert);
+    save_time_to_file("MEDIA SEARCH", media_search);
     // }
-    print_data(&my_vector);
-    print_only_nodes(&my_vector);
+    // print_data(&my_vector);
+    // print_only_nodes(&my_vector);
     printf("VECTOR SIZE -> %d\n\n", my_vector.size);
 }
