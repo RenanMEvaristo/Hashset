@@ -46,14 +46,17 @@ int main()
         add_data(&my_vector, &my_person);
     }
 
+    vecpeople my_vector2;
+
     double media_insert = 0;
     double media_search = 0;
 
     for (int i = 0; i < ELEMENTS; i++)
     {
+        my_vector2 = my_vector;
         generate_random_data(&my_person);
         Stopwatch sw = stopwatch_start();
-        add_data(&my_vector, &my_person);
+        add_data(&my_vector2, &my_person);
         stopwatch_stop(&sw);
         double time = stopwatch_ms(&sw);
         media_insert += time;
@@ -80,5 +83,5 @@ int main()
     // }
     // print_data(&my_vector);
     // print_only_nodes(&my_vector);
-    printf("VECTOR SIZE -> %d\n\n", my_vector.size);
+    printf("VECTOR SIZE -> %ld\n\n", my_vector.size);
 }
