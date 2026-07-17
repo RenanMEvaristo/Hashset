@@ -110,7 +110,7 @@ void copy_vector_elements(vecpeople *vector, vecpeople *copy_vector, int old_cap
             }
         }
     }
-    printf("DEBUG RESIZE: POP MOVED %d", copy_vector->size);
+    printf("DEBUG RESIZE: COPY MOVED %d\n", copy_vector->size);
 
     *vector = *copy_vector;
 }
